@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        div {
+            margin: auto;
+        }
+        
+        #pDiv {
+            margin-top: 5%;
+            width: 50%;
+        }
+        
+        #pDiv span {
+            background-color: rgba(131, 255, 28, 0.63);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="InP" placeholder="请输入关键字..." />
+        <button id="btnSearch">搜索</button>
+        <button id="btnReset">还原</button>
+    </div>
+
+    <div id="pDiv">
+        <p>2018数博会己开始筹备，2018数博会传播组将迎来一位智能明星——小编机器人。小编机器人是一款人工智能机器人产品，这个产品运用智能语义分析技术、机器学习和深度学习技术、神经网络和知识图谱技术，以及创新发明的独特算法，能够在毫秒级时间内对涉时政类文本进行自主自动勘误。 据乘方大数据公司CTO赵振宇介绍，小编机器人对涉时政类的重要名词、词组、姓名、职务、排序能自动实现百分之百精准勘误，还能对涉时政类概念、搭配、句子、表述自动进行准确勘误，也能对涉时政类的文本内容进行智能勘误。这对于报社、出版社、通讯社、杂志社、网站、政府机关、企事业单位、社会团体直至个人撰写重要文章文件都是一个好消息。
+            小编机器人项目负责人说，在智能语义技术方面，英语走的远一些，而汉语由于其语义的复杂性要比英语困难得多。比如SIRI，英语SIRI的智商就比汉语SIRI的智商高。而小编机器人一定程度上战胜了这个难关，现在，小编机器人即使和千百万“专业编辑”进行“速度”和“准确性”的角逐，仍然稳操“汉语文本第一编辑”之胜券，据我对小编机器人独特算法和深度学习情况的了解，小编机器人确是人工智能的一颗璀璨新星。 人工智能专家评价，小编机器人实现的文本自主自动勘误，不仅能够极大地节约劳动成本，极大地提高工作效率，确保重要表述的准确性，对新闻出版行业以及政府机关相关部门的业务流程、业务模式、业务标准产生深刻影响。
+        </p>
+    </div>
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script>
+        $('#btnSearch').click(function() {
+
+            var txt = $('#pDiv p').text();
+            var strS = $('#InP').val();
+            //这里选择用 构造函数的方式初始化正则表达式对象  因为可以使用变量 字面量无法做如
+            // 字面量正则表达式：var subStr = /关键字/g;
+            var subStr = new RegExp(strS, 'g');
+
+
+            var result = txt.replace(subStr, "<span>" + strS + "</span>");
+            $('#pDiv').html('<p>' + result + '</p>');
+        });
+        $('#btnReset').click(function() {
+
+            var txt = $('#pDiv p').text();
+            var subStr = new RegExp('<span>', 'g');
+            var subStr2 = new RegExp('</span>', 'g');
+
+            var result1 = txt.replace(subStr, "");
+            var result = result1.replace(subStr2, "");
+            $('#pDiv').html('<p>' + result + '</p>');
+        });
+    </script>
+</body>
+
+</html>

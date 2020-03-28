@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id='demo'>
+        <base-input v-model="username" :label='username' required placeholder="Enter your username"></base-input>
+    </div>
+    <script>
+        Vue.component('base-input', {
+            inheritAttrs: false,
+            props: ['label', 'value'],
+            template: `
+                  <label>
+                    {{ label }}
+                    <input
+                      v-bind="$attrs"
+                      v-bind:value="value"
+                      v-on:input="$emit('input', $event.target.value)"
+                    >
+                  </label>
+                `
+        })
+        var demo = new Vue({
+            el: '#demo',
+            data() {
+                return {
+                    username: ''
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

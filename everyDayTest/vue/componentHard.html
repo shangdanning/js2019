@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <link rel="stylesheet" href='./css/example.css' type="text/css">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1>Vue 入门案例</h1>
+            <p>该案例用到的知识点：全局组件、v-model、v-for、props、$emit</p>
+        </header>
+        <main>
+            <div class="inputInfo">
+                <textarea v-model="inputValue"></textarea>
+                <button v-on:click="submit">提交</button>
+            </div>
+            <ul>
+                <todo-item class="liStyle" v-for="(item,index) in list" :key="index" :content="item" :index="index" @delete="handDelete">
+                </todo-item>
+            </ul>
+        </main>
+    </div>
+    <script>
+        //全局组件
+        Vue.component('todo-item', {
+            props: ['content', 'index'],
+            template: '<li >{{index+1}}:{{content}}<button @click="handDel">×</button></li>',
+            methods: {
+                handDel: function() {
+                    this.$emit('delete', this.index)
+                }
+            },
+            beforeCreate() {
+                console.log('子组件beforeCreate')
+            },
+            created() {
+                console.log('子组件created')
+            },
+            beforemount() {
+                console.log('子组件beforemount')
+            },
+            mounted() {
+                console.log('子组件Mounted')
+            },
+            beforeUpdate() {
+                console.log('子组件beforeUpdate')
+            },
+            updated() {
+                console.log('子组件updated')
+            }
+        })
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                inputValue: ' hello',
+                list: ['1']
+            },
+            methods: {
+                submit: function() {
+                    this.list.push(this.inputValue);
+                    this.inputValue = '';
+                },
+                //删除一条数据
+                handDelete: function(index) {
+                    this.list.splice(index, 1);
+                }
+            },
+            beforeCreate() {
+                console.log('父组件beforeCreate')
+            },
+            created() {
+                console.log('父组件created')
+            },
+            beforemount() {
+                console.log('父组件beforemount')
+            },
+            mounted() {
+                console.log('父组件Mounted')
+            },
+            beforeUpdate() {
+                console.log('父组件beforeUpdate')
+            },
+            updated() {
+                console.log('父组件updated')
+            }
+
+        })
+    </script>
+</body>
+
+</html>

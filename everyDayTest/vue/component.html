@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <ButtonCounter title='first' @clicknow="clicknow">
+            <h5>这是第一个计数器</h5>
+        </ButtonCounter>
+        <ButtonCounter title='two' @clicknow="clicknow">
+            <h5>这是第二个计数器</h5>
+        </ButtonCounter>
+    </div>
+    <script>
+        Vue.component('ButtonCounter', {
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            props: ['title'],
+            template: '<div><h1>{{title}}</h1><slot></slot><button v-on:click="clickfun"> You clicked me {{count}} times</button></div>',
+            methods: {
+                clickfun: function() {
+                    this.count++;
+                    this.$emit('clicknow', `${this.title}:${ this.count}`);
+                }
+            }
+        })
+        var vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+                clicknow(e) {
+                    console.log(e);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

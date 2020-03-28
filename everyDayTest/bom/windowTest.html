@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<header>
+
+</header>
+
+<body>
+    <div>
+        <button id="toLeft">向左</button>
+        <button id="closeNewPage">关闭窗口</button>
+    </div>
+    <a href="javascript:void(0);" id='toOtherPage'>去下一个页面</a>
+</body>
+<script>
+    let toleft = document.querySelector("#toLeft");
+    toleft.addEventListener("click", () => {
+        //window.moveTo(0, 0);//被浏览器禁用
+        console.log(window.outerHeight, window.outerWidth); //1
+        console.log(window.innerHeight, window.innerWidth); //2
+        console.log(document.body.clientHeight, document.body.clientWidth); //3
+        console.log(document.documentElement.clientHeight, document.documentElement.clientWidth); //4
+        //1是整个浏览器的宽和高，2和4是视口的宽和高，3是文档流的宽和高
+        // window.resizeTo(100, 200);//被浏览器禁用
+    })
+    var windowNew = null;
+    document.querySelector("#toOtherPage").addEventListener("click", () => {
+        windowNew = window.open("otherPage.html", "wroxWindow",
+            "height=400,width=400,top=50,left=200,resizable=yes");
+    })
+    document.querySelector("#closeNewPage").addEventListener("click", () => {
+        // window.resizeTo(1000, 200);
+        windowNew.close();
+    })
+</script>
+
+</html>

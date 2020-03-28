@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .warper {
+        position: absolute;
+        width: 200px;
+        border: 1px solid #ff6633;
+      }
+
+      .float-1 {
+        float: left;
+        background: blue;
+        height: 100px;
+        width: 100px;
+      }
+      .float-2 {
+        float: left;
+        background: #ff0;
+        height: 50px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="warper">
+      <div class="float-1"></div>
+      <div class="float-2"></div>
+      <br />
+    </div>
+    <div>111</div>
+  </body>
+</html>
+
+<!-- .warper {
+    display: inline-block;
+    width: 200px;
+    border: 1px solid #ff6633;
+  } -->
+
+<!-- .warper{
+    width: 200px;
+    border:1px solid  #ff6633;
+    display: table;
+    overflow: hidden; 
+} -->
+
+<!-- .warper:after {
+    content: '';
+    height: 0;
+    display: block;
+    clear: both;
+}  -->
+
+<!-- br{
+    content: '';
+    height: 0;
+    display: block;
+    clear: both;
+  } -->
